@@ -1,5 +1,4 @@
 import { Global, Logger, Module } from '@nestjs/common';
-import { CacheService } from './cache.service';
 import {
   CacheInterceptor,
   CacheModule as NestCacheModule,
@@ -8,6 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { redisStore } from 'cache-manager-redis-store';
 import { CacheableMemory } from 'cacheable';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { CacheService } from './cache.service';
 
 @Global()
 @Module({
