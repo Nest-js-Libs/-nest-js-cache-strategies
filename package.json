@@ -8,6 +8,10 @@
     "dist/**/*",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nest-js-Libs/nest-js-cache-strategies"
+  },
   "scripts": {
     "start:dev": "nest start --watch",
     "build": "rimraf dist && tsc -p tsconfig.build.json",

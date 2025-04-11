@@ -1,18 +1,32 @@
-import { Global, Logger, Module } from '@nestjs/common';
+import { Global, Logger, LogLevel, Module, Provider } from '@nestjs/common';
 import {
   CacheInterceptor,
   CacheModule as NestCacheModule,
 } from '@nestjs/cache-manager';
-import { ConfigService } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { redisStore } from 'cache-manager-redis-store';
 import { CacheableMemory } from 'cacheable';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { CacheService } from './cache.service';
 
+const loggerProvider: Provider = {
+  provide: Logger,
+  useFactory: (configService: ConfigService) => {
+    const level = configService.getOrThrow<LogLevel>('LOGGER_LEVEL', 'log');
+    const logger = new Logger();
+    logger.localInstance.setLogLevels?.([level]);
+    return logger;
+  },
+  inject: [ConfigService],
+};
+
 @Global()
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     NestCacheModule.registerAsync({
+      imports: [ConfigModule],
+      provideInjectionTokensFrom: [loggerProvider],
       useFactory: async (configService: ConfigService, logger: Logger) => {
         const ttl = parseInt(
           configService.getOrThrow<string>('CACHE_TTL', '60'),
@@ -47,6 +61,7 @@ import { CacheService } from './cache.service';
   controllers: [],
   providers: [
     CacheService,
+    loggerProvider,
     {
       provide: APP_INTERCEPTOR,
       useClass: CacheInterceptor,

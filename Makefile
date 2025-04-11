@@ -15,16 +15,22 @@ test:
 	npm run test
 
 publish-patch:
+	npm run build
+	rm -rf dist/example
 	npm version patch
 	npm publish --access public
 	git push --follow-tags
 
 publish-minor:
+	npm run build
+	rm -rf dist/example
 	npm version minor
 	npm publish --access public
 	git push --follow-tags
 
 publish-major:
+	npm run build
+	rm -rf dist/example
 	npm version major
 	npm publish --access public
 	git push --follow-tags

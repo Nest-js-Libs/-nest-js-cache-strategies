@@ -1,8 +1,7 @@
-import { Injectable, Inject, Logger, Global } from '@nestjs/common';
+import { Injectable, Inject, Logger } from '@nestjs/common';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 
-@Global()
 @Injectable()
 export class CacheService {
   constructor(
