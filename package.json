@@ -1,6 +1,6 @@
 {
   "name": "@nest-js/cache-strategies",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "NestJS cache strategies library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
