@@ -15,8 +15,7 @@ test:
 	npm run test
 
 publish-patch:
-	npm run build
-	rm -rf dist/example
+	npm run build && rm -rf dist/example
 	npm version patch
 	npm publish --access public
 	git push --follow-tags
