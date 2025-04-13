@@ -1,6 +1,6 @@
 # Módulo de Caching
 
-# @nest-js/cache-strategies
+### @nest-js/cache-strategies
 
 [![npm version](https://img.shields.io/npm/v/@nest-js/cache-strategies.svg)](https://www.npmjs.com/package/@nest-js/cache-strategies)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
